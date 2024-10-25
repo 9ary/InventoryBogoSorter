@@ -37,6 +37,8 @@ import micdoodle8.mods.galacticraft.core.inventory.ContainerParaChest;
 import mods.railcraft.common.gui.containers.ContainerRCChest;
 import moze_intel.projecte.gameObjs.container.CondenserContainer;
 import moze_intel.projecte.gameObjs.container.CondenserMK2Container;
+import moze_intel.projecte.gameObjs.container.AlchBagContainer;
+import moze_intel.projecte.gameObjs.container.AlchChestContainer;
 import net.blay09.mods.cookingforblockheads.container.ContainerCounter;
 import net.blay09.mods.cookingforblockheads.container.ContainerFridge;
 import net.dries007.tfc.objects.container.ContainerChestTFC;
@@ -154,6 +156,11 @@ public class DefaultCompat {
             });
             api.addPlayerSortButtonPosition(CondenserContainer.class, IPosSetter.TOP_RIGHT_VERTICAL);
             api.addPlayerSortButtonPosition(CondenserMK2Container.class, IPosSetter.TOP_RIGHT_VERTICAL);
+
+            api.addGenericCompat(AlchBagContainer.class);
+            api.addPlayerSortButtonPosition(AlchBagContainer.class, IPosSetter.TOP_RIGHT_VERTICAL);
+            api.addGenericCompat(AlchChestContainer.class);
+            api.addPlayerSortButtonPosition(AlchChestContainer.class, IPosSetter.TOP_RIGHT_VERTICAL);
         }
 
         if (Loader.isModLoaded("immersiveengineering")) {

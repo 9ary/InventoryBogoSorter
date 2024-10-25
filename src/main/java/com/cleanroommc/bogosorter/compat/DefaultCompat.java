@@ -1,5 +1,7 @@
 package com.cleanroommc.bogosorter.compat;
 
+import com.cleanroommc.bogosorter.BogoSortAPI;
+
 import appeng.container.implementations.ContainerSkyChest;
 import blusunrize.immersiveengineering.common.gui.ContainerCrate;
 import c4.conarm.common.inventory.ContainerKnapsack;
@@ -23,6 +25,7 @@ import forestry.storage.gui.ContainerBackpack;
 import forestry.storage.gui.ContainerNaturalistBackpack;
 import gregtech.api.gui.Widget;
 import gregtech.api.gui.impl.ModularUIContainer;
+import ic2.core.block.machine.container.ContainerIndustrialWorkbench;
 import ic2.core.block.personal.TileEntityPersonalChest;
 import ic2.core.block.personal.container.ContainerPersonalChest;
 import ic2.core.block.storage.box.*;
@@ -226,6 +229,16 @@ public class DefaultCompat {
             });
             api.addCompat(ContainerToolbox.class, (container, builder) -> {
                 builder.addSlotGroup(0, 9, 9);
+            });
+            api.addCompat(ContainerIndustrialWorkbench.class, (container, builder) -> {
+                List<ISlot> slots = new ArrayList<>();
+                for (Slot slot : container.inventorySlots) {
+                    ISlot iSlot = BogoSortAPI.INSTANCE.getSlot(slot);
+                    if (!BogoSortAPI.isPlayerSlot(iSlot)) {
+                        slots.add(iSlot);
+                    }
+                }
+                builder.addSlotGroup(slots.subList(10, 28), 9);
             });
         }
 
